@@ -18,11 +18,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/home',[PostController::class,'index']);
-
 //Kontroller normal
+//Route::get('/home',[PostController::class,'index']);
+
+
 // Route::get('/laravel',[BlogController::class,'index']);
 
 //Kontroller CRUD 
 Route::resource('/blog',BlogController::class);
+
+
+Route::match(['get','post'],'/create',[BlogController::class,'create']);
+
+Route::post('/blog.store',[BlogController::class,'store'])->name('store');
+
